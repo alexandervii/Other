@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/et_url"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/edit_text_bg"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/btn_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_url"
+        android:layout_margin="5dp"
+        android:background="@drawable/btn_normal_bg"
+        android:text="GO"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_url"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/btn_js_selector"
+        android:padding="5dp"
+        android:text="WebJS"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_active_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_js"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/btn_js_selector"
+        android:padding="5dp"
+        android:text="topic"
+        android:textSize="30sp" />
+    
+       <Button
+        android:id="@+id/btn_new_js"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_active_js"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/btn_js_selector"
+        android:padding="5dp"
+        android:text="new"
+        android:textSize="30sp" />
+
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res/cn.com.alex"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="@drawable/progress_bg"
+        android:indeterminate="false"
+        android:indeterminateOnly="false"
+        android:maxHeight="20dip"
+        android:minHeight="20dip"
+        android:padding="2dip"
+        android:progressDrawable="@drawable/progress_horizontal" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_v"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progressBar"
+        android:layout_margin="5dip"
+        android:background="@drawable/progress_bg"
+        android:indeterminate="false"
+        android:indeterminateOnly="false"
+        android:maxHeight="20dip"
+        android:minHeight="20dip"
+        android:padding="2dip"
+        android:progressDrawable="@drawable/progress_vertical" />
+
+    <cn.com.alex.widget.RoundProgressBar
+        android:id="@+id/roundProgressBar"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_below="@id/progressBar"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@id/progressBar_v"
+        android_custom:roundColor="#D1D1D1"
+        android_custom:roundProgressColor="#662222ff"
+        android_custom:roundWidth="10dip"
+        android_custom:textColor="#22ee44"
+        android_custom:textIsDisplayable="true"
+        android_custom:textSize="18sp" />
+
+    <cn.com.alex.widget.RadioProgressBar
+        android:id="@+id/radioProgressBar"
+        style="@style/ProgressBar_Mini"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/roundProgressBar"
+        android:layout_toRightOf="@id/progressBar_v" />
+    
+    <Button
+        android:id="@+id/goSelf" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/progressBar_v"
+        android:layout_below="@id/radioProgressBar"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="go"
+        />
+
+</RelativeLayout>

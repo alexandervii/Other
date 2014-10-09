@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WebJsActivity" >
+
+    <include
+        android:id="@+id/js_ll_action_bar_title"
+        layout="@layout/web_view_title" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/js_ll_action_bar_title" >
+
+        <TextView
+            android:id="@+id/tv_no_more_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:drawableTop="@drawable/beside_group_no_data_image_drawable"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:text="没有数据,点击重新加载"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <WebView
+            android:id="@+id/web_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+</RelativeLayout>

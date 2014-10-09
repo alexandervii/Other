@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rec="http://schemas.android.com/apk/res/cn.com.alex"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DefinedProgressBarActivity" >
+
+    <cn.com.alex.defined.MyRecProgressBar
+        android:id="@+id/recProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        rec:backgroundColor="#0000ff"
+        rec:isShowText="true"
+        rec:progressColor="#00ff00"
+        rec:progressTextSize="15sp"
+        rec:textColor="#000000" />
+
+</RelativeLayout>

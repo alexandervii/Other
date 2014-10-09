@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TopicActivity" >
+
+    <include
+        android:id="@+id/topic_title"
+        layout="@layout/web_view_title" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topic_title" >
+
+        <TextView
+            android:id="@+id/topic_tv_failed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:drawableTop="@drawable/beside_group_no_data_image_drawable"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:text="没有数据,点击重新加载"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/topic_fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <WebView
+                android:id="@+id/topic_wv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ProgressBar
+                android:id="@+id/topic_loading_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+    </FrameLayout>
+
+</RelativeLayout>
