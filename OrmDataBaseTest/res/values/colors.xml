@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="person_list_item_name_text_color">#35E316</color>
+    <color name="person_list_item_gender_text_color">#2981F5</color>
+    <color name="person_list_item_age_text_color">#742AF4</color>
+    <color name="person_list_item_addr_text_color">#E70D82</color>
+    <color name="person_list_item_desc_text_color">#E4E802</color>
+</resources>

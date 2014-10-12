@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OrmDataBase</string>
+    <string name="menu_settings">Settings</string>
+    <string name="person_list_item_name">姓名</string>
+    <string name="person_list_item_gender">美女</string>
+    <string name="person_list_item_age_text">18</string>
+    <string name="person_list_item_addr_text">珠穆朗玛峰</string>
+    <string name="person_list_item_desc_text">哈哈哈</string>
+
+</resources>
