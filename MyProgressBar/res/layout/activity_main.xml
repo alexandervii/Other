@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Alex="http://schemas.android.com/apk/res/cn.com.alex"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <cn.com.alex.widget.MyProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" 
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        Alex:textColor="#3300FF"
+        Alex:textSize="18sp"
+        Alex:maxProgress="22"
+        Alex:backgroundProgressColor="#FFFF33"
+        Alex:foregroundProgressColor="#FF0033"/>
+
+</RelativeLayout>
