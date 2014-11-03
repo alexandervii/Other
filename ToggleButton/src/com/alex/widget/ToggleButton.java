@@ -91,7 +91,9 @@ public class ToggleButton extends View {
 	private void drawBackground(Canvas canvas, int status) {
 		mPaint.setColor(Color.BLUE);
 		mBackRect.set(mTop, mLeft, mRight, mBottom);
-		canvas.drawRoundRect(mBackRect, mXRadius, mYRadius, mPaint);
+//		canvas.drawRoundRect(mBackRect, mXRadius, mYRadius, mPaint);
+		canvas.drawRect(mBackRect, mPaint);
+		canvas.drawCircle(mBtnX, mBtnY, mButtonRadius, mPaint);
 	}
 
 }
