@@ -1,19 +1,17 @@
 package com.alex.widget;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class ToggleButton extends View {
-	
+	public static final String TAG = ToggleButton.class.getSimpleName();
 	
 	public static final int STATUS_DRAGING = 0;
 	public static final int STATUS_SWITCH_ON = 1;
@@ -34,7 +32,9 @@ public class ToggleButton extends View {
 	
 	private int mGap = 5;
 	
-	private float mMoveX = -1;
+	private float mMoveX = 0;
+	private float mLastX = 0;
+	private float mDx = 0;
 	
 	/** 背景的边界*/
 	private float mTop = 30;
@@ -53,6 +53,8 @@ public class ToggleButton extends View {
 	private float mBtnRX = mRight - mButtonRadius;
 	/**右边按钮的中心Y坐标*/
 	private float mBtnRY = mTop + mButtonRadius;
+	/** 背景的中心X坐标*/
+	private float mBackCenterX = (mBtnLX + mBtnRX) / 2;
 	/** 背景字体的大小*/
 	private float mTextSize = 22;
 	/** 字体的Y*/
@@ -96,7 +98,6 @@ public class ToggleButton extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		mStatus = STATUS_SWITCH_ON;
 		drawBackground(canvas, mStatus);
 		drawButton(canvas, mStatus, mMoveX);
 	}
@@ -113,36 +114,56 @@ public class ToggleButton extends View {
 				return false;
 			}
 			lastX = event.getX();
+			mLastX = lastX;
 			mStatus = STATUS_DRAGING;
 			break;
 		case MotionEvent.ACTION_MOVE:
 			float currentX = event.getX();
 			//如果是滑动状态
-			//如果出界(x轴边界)了，做出出界处理
 			//根据currentX - lastX的正负，及绝对值来计算出滑块的移动方向和距离
+			//如果出界(x轴边界)了，做出出界处理
 			
 			if(mStatus == STATUS_DRAGING) {
-				if(x > mRight) {
-					x = mRight;
+				mDx = currentX - lastX;
+				mMoveX = mLastX + mDx;
+				if(mMoveX > mBtnRX) {
+					mMoveX = mBtnRX;
 				}
-				if(x < mLeft) {
-					x = mLeft;
+				if(mMoveX < mBtnLX) {
+					mMoveX = mBtnLX;
 				}
-				
 			}
 			lastX = currentX;
-			invalidate();
+			mLastX = mMoveX;
 			break;
 		case MotionEvent.ACTION_UP:
 			//对抬起时的点左边界检测，如果x坐标小于背景中点x，则滑块最终在左边，否则在右边
 			//根据和上面的判断，重置滑块的状态
+			
+			if(mLastX >= mBackCenterX) {
+				mMoveX = mBtnRX;
+				mStatus = STATUS_SWITCH_ON;
+			} else {
+				mMoveX = mBtnLX;
+				mStatus = STATUS_SWITCH_OFF;
+			}
 			break;
 		}
+		Log.i(TAG, "onTouchEvent-->mLastX-->>"+mLastX);
+		Log.i(TAG, "onTouchEvent-->mMoveX-->>"+mMoveX);
+		invalidate();
 		return super.onTouchEvent(event);
 	}
 	
 	private void drawButton(Canvas canvas, int status, float centerX) {
 		mBtnPaint.setColor(Color.RED);
+		if(status != STATUS_DRAGING) {
+			if(status == STATUS_SWITCH_ON) {
+				centerX = mBtnRX;
+			} else if(status == STATUS_SWITCH_OFF) {
+				centerX = mBtnLX;
+			}
+		} 
 		canvas.drawCircle(centerX, mBtnRY, mButtonRadius, mBtnPaint);
 	}
 	
@@ -160,5 +181,20 @@ public class ToggleButton extends View {
 		if(status == STATUS_SWITCH_ON) {
 			canvas.drawText(mContent, mTextX, mTextY, mTextPaint);
 		} 
+	}
+	
+	/**
+	 * set the status to be on or off
+	 * @param status
+	 */
+	public void setStatus(int status) {
+		switch (status) {
+		case STATUS_SWITCH_OFF:
+			this.mStatus = STATUS_SWITCH_OFF;
+			break;
+		case STATUS_SWITCH_ON:
+			this.mStatus = STATUS_SWITCH_ON;
+			break;
+		}
 	}
 }
