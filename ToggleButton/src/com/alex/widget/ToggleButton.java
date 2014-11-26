@@ -18,7 +18,7 @@ public class ToggleButton extends View {
 	public static final int STATUS_SWITCH_OFF = 2;
 	
 	private int mStatus = STATUS_SWITCH_ON;
-	private String mContent = "匿名";
+	private String mContent = "demacial";
 	
 	
 	private Paint mBackPaint;
