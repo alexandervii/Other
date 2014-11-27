@@ -9,24 +9,53 @@ package com.alex;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int show_text=0x7f010000;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>on</code></td><td>0</td><td></td></tr>
+<tr><td><code>off</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int status=0x7f010002;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int text=0x7f010001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int menu_settings=0x7f070001;
-        public static final int togglebutton=0x7f070000;
+        public static final int menu_settings=0x7f040003;
+        public static final int off=0x7f040001;
+        public static final int on=0x7f040000;
+        public static final int togglebutton=0x7f040002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
     }
     public static final class menu {
-        public static final int activity_main=0x7f060000;
+        public static final int activity_main=0x7f070000;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int hello_world=0x7f040002;
-        public static final int menu_settings=0x7f040001;
+        public static final int app_name=0x7f050000;
+        public static final int hello_world=0x7f050002;
+        public static final int menu_settings=0x7f050001;
     }
     public static final class style {
         /** 
@@ -50,10 +79,74 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f060001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a ToggleButton.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ToggleButton_show_text com.alex:show_text}</code></td><td></td></tr>
+           <tr><td><code>{@link #ToggleButton_status com.alex:status}</code></td><td></td></tr>
+           <tr><td><code>{@link #ToggleButton_text com.alex:text}</code></td><td></td></tr>
+           </table>
+           @see #ToggleButton_show_text
+           @see #ToggleButton_status
+           @see #ToggleButton_text
+         */
+        public static final int[] ToggleButton = {
+            0x7f010000, 0x7f010001, 0x7f010002
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.alex.R.attr#show_text}
+          attribute's value can be found in the {@link #ToggleButton} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:show_text
+        */
+        public static final int ToggleButton_show_text = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.alex.R.attr#status}
+          attribute's value can be found in the {@link #ToggleButton} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>on</code></td><td>0</td><td></td></tr>
+<tr><td><code>off</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:status
+        */
+        public static final int ToggleButton_status = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.alex.R.attr#text}
+          attribute's value can be found in the {@link #ToggleButton} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:text
+        */
+        public static final int ToggleButton_text = 1;
+    };
 }

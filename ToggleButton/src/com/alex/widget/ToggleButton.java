@@ -1,9 +1,14 @@
 package com.alex.widget;
 
+import com.alex.R;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -26,6 +31,8 @@ public class ToggleButton extends View {
 	private float mTextX;
 	private float mTextY;
 	private float mTextSize;
+	private String mText;
+	private boolean mIsShowText = false;
 	
 	private float mBackWidth;
 	private float mBackHeight;
@@ -60,11 +67,46 @@ public class ToggleButton extends View {
 	public ToggleButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initView();
+		initAttributes(context,attrs);
 	}
 
 	public ToggleButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView();
+		initAttributes(context,attrs);
+	}
+	
+	@SuppressLint("Recycle")
+	private void initAttributes(Context context, AttributeSet attrs) {
+		if(attrs != null) {
+			TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.ToggleButton);
+			
+			int status = ta.getInt(R.styleable.ToggleButton_status, 1);
+			Log.i(TAG, "attribute------>>>status--->>"+status);
+			if(status == 0) {
+				mStatus = Status.ON;
+			} else {
+				mStatus = Status.OFF;
+			}
+			mIsShowText = ta.getBoolean(R.styleable.ToggleButton_show_text, false);
+			Log.i(TAG, "attribute------>>>isShowText--->>"+mIsShowText);
+			if(mIsShowText) {
+				mText = ta.getString(R.styleable.ToggleButton_text);
+				mText = mText == null ? "" : mText;
+				Log.i(TAG, "attribute------>>>text--->>"+mText);
+			}
+			ta.recycle();
+		}
+	}
+	
+	public void setShowText(boolean show) {
+		mIsShowText = show;
+	}
+	
+	public void setText(String text) {
+		if(mIsShowText) {
+			mText = text;
+		}
 	}
 
 	private void initView() {
@@ -77,6 +119,11 @@ public class ToggleButton extends View {
 	}
 	
 	private void initData() {
+		int width = getWidth();
+		int height = getHeight();
+		int top = getTop();
+		int left = getLeft();
+		Log.i(TAG, "width-->>height-->>top-->>left--->>>>"+width+","+height+","+top+","+left);
 		/*******需要初始化的参数*********/
 		mRadius = 50;
 		mBackWidth = 130;
@@ -102,6 +149,23 @@ public class ToggleButton extends View {
 		mTextX = mLeft + mBackWidth / 2 - mTextSize;
 		mTextY = mTop + mBackHeight / 2 + mTextSize / 3;
 	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+//		int width = MeasureSpec.getSize(widthMeasureSpec);
+//		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+//		int height = MeasureSpec.getSize(heightMeasureSpec);
+//		height = getMeasuredHeight();
+//		int width = height * 3;
+//		setMeasuredDimension(width, height);
+	}
+	
+	@Override
+	protected void onLayout(boolean changed, int left, int top, int right,
+			int bottom) {
+		super.onLayout(changed, left, top, right, bottom);
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -116,7 +180,7 @@ public class ToggleButton extends View {
 		if(mRadiusX <= mTextX + mRadius) {
 			return ;
 		}
-		if(mStatus == Status.ON) {
+		if(mStatus == Status.ON && mIsShowText && !TextUtils.isEmpty(mText)) {
 			canvas.drawText("Open", mTextX, mTextY, mTextPaint);
 		}
 	}
