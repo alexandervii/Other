@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/id_main_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="小慕"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_main_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_bar" >
+
+        <Button 
+            android:id="@+id/id_main_send"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:text="发送"
+            android:background="@drawable/send_btn_bg"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>
+        
+        <EditText
+            android:id="@+id/id_main_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="18sp"
+            android:layout_toLeftOf="@id/id_main_send"
+            android:background="@drawable/login_edit_normal" />
+        
+    </RelativeLayout>
+
+    <ListView 
+        android:id="@+id/id_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_main_layout_title"
+        android:layout_above="@id/id_main_layout_bottom">
+    </ListView>
+    
+</RelativeLayout>
