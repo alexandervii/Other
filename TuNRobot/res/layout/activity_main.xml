@@ -55,6 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/id_main_layout_title"
+		android:divider="@null"
+		android:dividerHeight="5dp"
         android:layout_above="@id/id_main_layout_bottom">
     </ListView>
     

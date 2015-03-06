@@ -27,23 +27,27 @@ public class MessageManager {
 	}
 	
 	public void sendMessage(final String msg,final MessageCallBack<ChatMessage> callBack) {
-		mHandler.post(new Runnable() {
+		new Thread() {
 			@Override
 			public void run() {
-				ChatMessage cm = null;
-				try {
-					cm = HttpUtil.sendMessage(msg);
-				} catch (Exception e) {
-					e.printStackTrace();
-					callBack.onFailure("");
-				}
+				final ChatMessage cm = HttpUtil.sendMessage(msg);
 				if(cm != null && cm.msg != null) {
-					callBack.onSuccess(cm);
+					mHandler.post(new Runnable() {
+						@Override
+						public void run() {
+							callBack.onSuccess(cm);
+						}
+					});
 				} else {
-					callBack.onFailure("");
+					mHandler.post(new Runnable() {
+						@Override
+						public void run() {
+							callBack.onFailure("");
+						}
+					});
 				}
 			}
-		});
+		}.start();
 	}
 	
 	public interface MessageCallBack<T> {

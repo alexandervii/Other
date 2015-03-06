@@ -75,6 +75,7 @@ public class ChatMessageAdapter extends BaseAdapter {
 				holder.mDate = (TextView) convertView.findViewById(R.id.id_to_msg_date);
 				holder.mMsg = (TextView) convertView.findViewById(R.id.id_to_msg_info);
 			}
+			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}

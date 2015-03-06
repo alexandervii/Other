@@ -55,7 +55,6 @@ public class HttpUtil {
 	public static String doGet(String msg) {
 		String result = "";
 		String url = setParams(msg);
-		Log.i(TAG, "url-->>"+url);
 		ByteArrayOutputStream bos = null;
 		InputStream is = null;
 		try {
@@ -74,6 +73,7 @@ public class HttpUtil {
 			}
 			bos.flush();
 			result = new String(bos.toByteArray());
+			Log.i(TAG, "result->>"+result);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
