@@ -1,0 +1,14 @@
+需要用到的知识点
+1.Matrix
+2.ScaleGestureDetector
+3.GestureDetector
+4.时间分发机制
+
+
+步骤
+1.复写ImageView
+
+2.Matrix
+        xscale      xskew       xtrans
+        yskew       yscale      ytrans
+        0           0           0
