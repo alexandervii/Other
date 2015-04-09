@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.alex.view.ZoomImageView
-        android:id="@+id/zoom"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@mipmap/f" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

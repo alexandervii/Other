@@ -12,3 +12,27 @@
         xscale      xskew       xtrans
         yskew       yscale      ytrans
         0           0           0
+
+ZoomImageView extends ImageView
+implements OnGlobalLayoutListener
+
+onAttachedToWindow:注册OnGlobalLayoutListener的监听
+onDetachedToWindow:注销OnGlobalLayoutListener的监听
+
+
+ScaleGestureDetector:多点触控
+->OnTouchListener 用来传递onTouch的motionEvent事件给ScaleGestureDetector的onTouchEvent
+onScale获得ScaleGestureDetector，进行多点触控时的缩放和平移操作
+
+自由移动
+
+双击放大 双击缩小
+GestureDetector:监听双击事件
+postDelay + Runnable:实现阶梯式缩放动画
+
+
+和ViewPager的结合
+放大以后和ViewPager的左右滑动冲突
+判断冲突发生原因：ViewPager屏蔽了ZoomImageView的左右滑动事件
+处理：在DOWN,MOVE里判断，如果当前图片的宽高大于控件的宽高，则不让父类屏蔽ZoomImageView的滑动事件
+getParent().requestDisallowInterceptTouchEvent(true);
