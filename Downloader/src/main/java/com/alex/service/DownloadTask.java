@@ -76,7 +76,8 @@ public class DownloadTask {
                 raf = new RandomAccessFile(file,"rwd");
                 raf.seek(start);
                 //开始下载
-                if(conn.getResponseCode() == HttpStatus.SC_OK) {
+                //由于是Range，所以下载成功返回码是HttpStatus.SC_PARTIAL_CONTENT
+                if(conn.getResponseCode() == HttpStatus.SC_PARTIAL_CONTENT) {
                     input = conn.getInputStream();
                     byte[] buffer = new byte[1024*4];
                     int length = -1;
@@ -92,7 +93,7 @@ public class DownloadTask {
                             return ;
                         }
                         //将下载进度发送到activity(延时一段时间)
-                        if(time - System.currentTimeMillis() > 500) {
+                        if(System.currentTimeMillis() - time > 500) {
                             time = System.currentTimeMillis();
                             Intent intent = new Intent();
                             intent.putExtra("finished",mFinished*100/mFileInfo.getLength());

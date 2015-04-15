@@ -28,7 +28,7 @@ public class DownloadService extends Service {
     public static final String ACTION_PAUSE = "ACTION_PAUSE";
     public static final int MSG_INIT = 1;
 
-
+    public static final String PROGRESS_UPDATE = "PROGRESS_UPDATE";
 
 
     public static final String DOWNLOAD_PATH = Environment.getExternalStorageDirectory() + "/download/";
@@ -40,6 +40,7 @@ public class DownloadService extends Service {
                 case MSG_INIT:
                     FileInfo fileInfo = (FileInfo) msg.obj;
                     Log.i(TAG,"handeMessage-->>length:"+fileInfo.getLength());
+                    new DownloadTask(DownloadService.this,fileInfo).download();
                     break;
             }
             super.handleMessage(msg);

@@ -1,7 +1,10 @@
 package com.alex.downloader;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +20,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView mFileNameTV;
     private ProgressBar mProgress;
     private Button mStartBtn,mPauseBtn;
-    private String url = "http://download.kugou.com/download/kugou_pc";
+    private String url = "http://www.imooc.com/mobile/imooc.apk";
     private FileInfo mFileInfo;
 
     @Override
@@ -26,10 +29,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         initView();
         initData();
+        IntentFilter filter = new IntentFilter(DownloadService.PROGRESS_UPDATE);
+        registerReceiver(mReceiver,filter);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mReceiver != null) {
+            unregisterReceiver(mReceiver);
+        }
+    }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(DownloadService.PROGRESS_UPDATE.equals(intent.getAction())) {
+                int finished = intent.getIntExtra("finished", -1);
+                mProgress.setProgress(finished);
+            }
+        }
+    };
+
     private void initData() {
-        mFileInfo = new FileInfo(0,url,"kugou7684.exe",0,0);
+        mFileInfo = new FileInfo(0,url,"imooc.apk",0,0);
+        mFileNameTV.setText(mFileInfo.getFileName());
     }
 
     private void initView() {
