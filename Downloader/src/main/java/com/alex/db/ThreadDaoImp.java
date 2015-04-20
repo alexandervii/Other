@@ -70,8 +70,9 @@ public class ThreadDaoImp implements ThreadDao {
         SQLiteDatabase db = mDBDbHelper.getWritableDatabase();
         String sql = "select * from thread_info where url = ? and thread_id = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{url,threadId+""});
+        boolean flag = cursor.moveToNext();
         cursor.close();
         db.close();
-        return cursor.moveToNext();
+        return flag;
     }
 }
