@@ -1,0 +1,76 @@
+一、CommonAdapter的抽象
+    1. 类的声明
+        abstract class CommonAdapter<T> extends BaseAdapter
+    2. 变量的声明，构造传参
+        private Context mContext;
+        private List<T> mData;
+        private int mLayoutId;
+    3. 抽取重复代码，将需实现代码抽象
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = ViewHolder.getHolder(mContext, position, mLayoutId, convertView, parent);
+            setData(holder,mData.get(position));
+            return holder.getConvertView();
+        }
+        public abstract void setData(ViewHolder holder, T t);
+
+二、ViewHolder的实现
+    1. 变量的声明，构造传参
+        /**用来保存一个ViewHolder中的控件*/
+        private SparseArray<View> mViews;
+        private int position;
+        private View convertView;
+        private ViewGroup parent;
+    2. 提供获取当前ViewHolder的方法
+        public static ViewHolder getHolder(Context context, int position,
+                                               int layoutId, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder(context, position,layoutId,parent);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+                holder.position = position;
+            }
+            return holder;
+        }
+    3. 提供返回当前ConvertView的方法
+        public View getConvertView() {
+            return convertView;
+        }
+    4. 提供获取当前ViewHolder中控件View的方法
+        public <T extends View> T getView(int resId) {
+            View view = null;
+            if(convertView != null) {
+                view = mViews.get(resId);
+                if(view == null) {
+                    view = convertView.findViewById(resId);
+                    mViews.put(resId,view);
+                }
+            }
+            return (T)view;
+        }
+    5. 提供为ViewHolder中控件View设置属性的方法，
+        public ViewHolder setText(int resId,String text) {
+            TextView tv = getView(resId);
+            tv.setText(text);
+            return this;
+        }
+
+        public ViewHolder setImageResource(int resId,int resourceId) {
+            ImageView iv = getView(resId);
+            iv.setImageResource(resourceId);
+            return this;
+        }
+
+三、一些常见问题
+   1. 解决ListView的Item事件抢占问题
+        如果item中有checkbox，button这类的控件，item在点击时无效，可以有两种方法解决
+        方法1：为抢占焦点的控件设置属性android:focusable="false"
+        方法2：为整个item布局的根节点设置属性android:descendantFocusability="blocksDescendants"
+
+
+   2. 复用ListView的Item带来的问题
+        如果listView中有切换状态的控件，如checkbox，由于复用，可能状态不会更新（上一版勾选状态在下一版重复出现）
+        解决办法有两种
+        方法1：在对应的bean里面添加保存checkbox状态的字段，在checkbox点击事件改编状态时，将对应的bean的字段做修改
+        方法2：在adapter里用集合保存每一个勾选状态的checkbox的position,getView的时候判断如果集合中存在该checkbox的position
+        则，setcheck(true)，否则false，在点击事件里做集合的增减操作
